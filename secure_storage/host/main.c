@@ -44,7 +44,7 @@ struct test_ctx {
 void prepare_tee_session(struct test_ctx *ctx)
 {
 	TEEC_UUID uuid = TA_SECURE_STORAGE_UUID;
-	uint32_t origin;
+	uint32_t origin; //result origin
 	TEEC_Result res;
 
 	/* Initialize a context connecting us to the TEE */
@@ -60,6 +60,7 @@ void prepare_tee_session(struct test_ctx *ctx)
 			res, origin);
 }
 
+/* function for closing the session and finalizing the context */
 void terminate_tee_session(struct test_ctx *ctx)
 {
 	TEEC_CloseSession(&ctx->sess);
@@ -108,6 +109,7 @@ TEEC_Result write_secure_object(struct test_ctx *ctx, char *id,
 	TEEC_Result res;
 	size_t id_len = strlen(id);
 
+	/* clear the operation struct and populate parameter types */
 	memset(&op, 0, sizeof(op));
 	op.paramTypes = TEEC_PARAM_TYPES(TEEC_MEMREF_TEMP_INPUT,
 					 TEEC_MEMREF_TEMP_INPUT,
