@@ -19,3 +19,4 @@ aes/host/optee_example_aes
 hotp/host/optee_example_hotp
 secure_storage/host/optee_example_secure_storage
 plugins/host/optee_example_plugins
+calculator/host/calculator_CA
